@@ -1,0 +1,5 @@
+db.sqlite3
+chromedriver
+__pycache__
+.idea/*
+
