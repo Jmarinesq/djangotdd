@@ -69,9 +69,17 @@ class NewVisitorTest(LiveServerTestCase):
         # Edith wonders whether the site will remember her list. Then she sees
         # that the site has generated a unique URL for her -- there is some
         # explanatory text to that effect.
-        self.fail('Finish the test!')
-        # She visits that URL - her to-do list is still there.
+        edith_list_url = self.browser.current_url
+        response = self.client.get(edith_list_url)
+        self.browser.quit()
+        self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path)
+        self.browser.get(self.live_server_url)
+        self.client.get(f'/lists/{response.context["list"].id}/')
 
+        # She visits that URL - her to-do list is still there.
+        self.browser.get(edith_list_url)
+        self.wait_for_row_in_list_table('1: Buy peacock feathers')
+        self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
         # Satisfied, she goes back to sleep
 
     def test_multiple_users_can_start_lists_at_different_urls(self):
