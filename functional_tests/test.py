@@ -36,7 +36,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
                 if time.time() - start_time > MAX_WAIT:
                     raise e
                 time.sleep(0.5)
-    """
+
     def test_can_start_a_list_for_one_user(self):
         # Edith has heard about a cool new online to-do app. She goes
         # to check out its homepage
@@ -83,12 +83,10 @@ class NewVisitorTest(StaticLiveServerTestCase):
         print(f'edith_list_url {edith_list_url}')
         time.sleep(4)
         response = self.client.get(edith_list_url)
+        time.sleep(4)
         self.browser.quit()
 
         self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path)
-        staging_server = os.environ.get('STAGING_SERVER')
-        if staging_server:
-            self.live_server_url = f'http://{staging_server}'
 
         print(f'List to open: {response.context["list"].id}')
         self.client.get(f'/lists/{response.context["list"].id}/')
@@ -98,7 +96,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         self.wait_for_row_in_list_table('1: Buy peacock feathers')
         self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
         # Satisfied, she goes back to sleep
-    """
+
     def test_multiple_users_can_start_lists_at_different_urls(self):
         # Edith starts a new to-do list
         self.browser.get(self.live_server_url)
