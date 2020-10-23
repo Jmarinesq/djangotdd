@@ -81,11 +81,12 @@ class NewVisitorTest(StaticLiveServerTestCase):
         print("here 1")
         edith_list_url = self.browser.current_url
         print(f'edith_list_url{edith_list_url}')
-        time.sleep(2)
+        time.sleep(4)
         response = self.client.get(edith_list_url)
         self.browser.quit()
         self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path)
         self.browser.get(self.live_server_url)
+        print(f'List to open: {response.context["list"].id}')
         self.client.get(f'/lists/{response.context["list"].id}/')
         print("here 2")
         # She visits that URL - her to-do list is still there.
