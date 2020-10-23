@@ -82,10 +82,9 @@ class NewVisitorTest(StaticLiveServerTestCase):
         edith_list_url = self.browser.current_url
         print(f'edith_list_url {edith_list_url}')
         time.sleep(4)
-        try:
-            response = self.client.get(edith_list_url)
-        except requests.exceptions.HTTPError as e:
-            print(e)
+
+        response = self.browser.get(edith_list_url)
+
         time.sleep(4)
         self.browser.quit()
 
