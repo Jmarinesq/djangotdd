@@ -81,10 +81,11 @@ class NewVisitorTest(StaticLiveServerTestCase):
         # explanatory text to that effect.
         edith_list_url = self.browser.current_url
         edith_page = edith_list_url.split("/")[-2]
+
         self.browser.quit()
+
         self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path)
 
-        self.client.get(f'/lists/{edith_page}/')
 
         # She visits that URL - her to-do list is still there.
         self.browser.get(edith_list_url)
@@ -114,6 +115,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         # Francis visits the home page.  There is no sign of Edith's
         # list
         staging_server = os.environ.get('STAGING_SERVER')
+
         self.browser.get(self.live_server_url)
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
