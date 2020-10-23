@@ -14,21 +14,26 @@ echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDkwYcyuikNoC3uU3cPCQk2/hpQmAtsgbGOyD
 
 server {
     listen 80;
-    server_name 157.245.68.84;
+    server_name 157.245.68.84_staging;
 
     location / {
-        proxy_pass http://157.245.68.84:8080;
+        proxy_pass http://unix:/tmp/157.245.68.84_staging.socket;
+    }
+
+    location /static {
+        alias /home/jmarin/sites/staging/static;
     }
 }
 
-export SITENAME=157.245.68.84
+export SITENAME=157.245.68.84_staging
 cd /etc/nginx/sites-enabled/
 
 sudo ln -s /etc/nginx/sites-available/$SITENAME $SITENAME
 
 readlink -f $SITENAME
 
+sudo systemctl reload nginx
 
-../virtualenv/bin/python manage.py runserver 157.245.68.84:8080
 
+../virtualenv/bin/python manage.py runserver
 
