@@ -81,6 +81,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         print("here 1")
         edith_list_url = self.browser.current_url
         print(f'edith_list_url{edith_list_url}')
+        time.sleep(2)
         response = self.client.get(edith_list_url)
         self.browser.quit()
         self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path)
