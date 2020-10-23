@@ -3,3 +3,4 @@ chromedriver
 __pycache__
 .idea/*
 
+/static
