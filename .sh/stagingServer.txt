@@ -18,6 +18,7 @@ server {
 
     location / {
         proxy_pass http://unix:/tmp/157.245.68.84_staging.socket;
+        proxy_set_header Host $host;
     }
 
     location /static {
@@ -36,4 +37,6 @@ sudo systemctl reload nginx
 
 
 ../virtualenv/bin/python manage.py runserver
+
+export DJANGO_DEBUG_FALSE=y DJANGO_SECRET_KEY=abc123
 
