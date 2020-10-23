@@ -84,6 +84,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         time.sleep(4)
 
         response = self.browser.get(edith_list_url)
+        print(response.json())
 
         time.sleep(4)
         self.browser.quit()
