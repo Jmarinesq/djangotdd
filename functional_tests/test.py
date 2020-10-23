@@ -78,13 +78,15 @@ class NewVisitorTest(StaticLiveServerTestCase):
         # Edith wonders whether the site will remember her list. Then she sees
         # that the site has generated a unique URL for her -- there is some
         # explanatory text to that effect.
+        print("here 1")
         edith_list_url = self.browser.current_url
+        print(f'edith_list_url{edith_list_url}')
         response = self.client.get(edith_list_url)
         self.browser.quit()
         self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path)
         self.browser.get(self.live_server_url)
         self.client.get(f'/lists/{response.context["list"].id}/')
-
+        print("here 2")
         # She visits that URL - her to-do list is still there.
         self.browser.get(edith_list_url)
         self.wait_for_row_in_list_table('1: Buy peacock feathers')
