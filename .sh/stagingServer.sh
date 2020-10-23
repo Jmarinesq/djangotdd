@@ -5,6 +5,7 @@ git clone https://github.com/Jmarinesq/djangotdd.git .
 
 export SITENAME=superlists.azurewebsites.net
 
+ssh jmarin@157.245.68.84
 jmarin - jmejme
 
 mkdir -p ~/.ssh
