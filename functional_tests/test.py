@@ -80,12 +80,8 @@ class NewVisitorTest(StaticLiveServerTestCase):
         # that the site has generated a unique URL for her -- there is some
         # explanatory text to that effect.
         edith_list_url = self.browser.current_url
-        edith_page = edith_list_url.split("/")[-2]
-
         self.browser.quit()
-
         self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path)
-
 
         # She visits that URL - her to-do list is still there.
         self.browser.get(edith_list_url)
