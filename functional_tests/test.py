@@ -84,7 +84,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         time.sleep(4)
         try:
             response = self.client.get(edith_list_url)
-        except Exception as e:
+        except requests.exceptions.HTTPError as e:
             print(e)
         time.sleep(4)
         self.browser.quit()
