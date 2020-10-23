@@ -11,6 +11,7 @@ def home_page(request: django.http.request):
 
 
 def view_list(request, list_id):
+    print(f"querying list:{list_id}")
     list_ = List.objects.get(id=list_id)
     return render(request, 'list.html', {'list': list_})
 
