@@ -51,7 +51,7 @@ def _create_or_update_dotenv():
 
 
 def _update_static_files():
-    run(f'/home/{env.user}/sites//virtualenv/bin/python /home/{env.user}/manage.py collectstatic --noinput')
+    run(f'/home/{env.user}/sites//virtualenv/bin/python /home/{env.user}/sites/staging/manage.py collectstatic --noinput')
 
 
 def _update_database():
