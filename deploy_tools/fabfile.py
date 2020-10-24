@@ -13,15 +13,15 @@ def deploy():
     site_folder = f'/home/{env.user}/sites/{env.host}'
     run(f'mkdir -p {site_folder}')
     with cd(site_folder):
-
-        _get_latest_source()
         print("_get_latest_source()")
-        _update_virtual_env()
+        _get_latest_source()
         print("_update_virtual_env()")
-        _create_or_update_dotenv()
+        _update_virtual_env()
         print("_create_or_update_dotenv()")
-        _update_static_files()
+        _create_or_update_dotenv()
         print("_update_static_files()")
+        _update_static_files()
+        print("_update_database()")
         _update_database()
 
 
