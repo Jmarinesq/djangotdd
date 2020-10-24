@@ -1,8 +1,10 @@
 import random
 from fabric.contrib.files import append, exists
 from fabric.api import cd, env, local, run
-ssh.util.log_to_file("paramiko.log", 10)
+
 repo_url = 'https://github.com/Jmarinesq/djangotdd'
+
+env.use_ssh_config = True
 
 
 def deploy():
