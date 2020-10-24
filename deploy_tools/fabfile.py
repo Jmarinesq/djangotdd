@@ -4,7 +4,6 @@ from fabric.api import cd, env, local, run
 
 repo_url = 'https://github.com/Jmarinesq/djangotdd'
 
-env.use_ssh_config = True
 env.password = 'jmejmejme'
 
 def deploy():
