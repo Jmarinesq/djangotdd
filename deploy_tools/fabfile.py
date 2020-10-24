@@ -1,9 +1,12 @@
 import random
 from fabric.contrib.files import append, exists
 from fabric.api import cd, env, local, run
+import paramiko as ssh
 
+
+ssh.util.log_to_file("paramiko.log", 10)
 repo_url = 'https://github.com/Jmarinesq/djangotdd'
-
+env.host = '157.'
 
 def deploy():
     site_folder = f'/home/{env.user}/sites/staging'
