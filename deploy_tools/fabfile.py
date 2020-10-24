@@ -4,10 +4,9 @@ from fabric.api import cd, env, local, run
 
 repo_url = 'https://github.com/Jmarinesq/djangotdd'
 
-env.password = 'jmejmejme'
 
 def deploy():
-    site_folder = f'/home/{env.user}/sites/{env.host}'
+    site_folder = f'/home/{env.user}/sites/staging'
     run(f'mkdir -p {site_folder}')
     with cd(site_folder):
         print("_get_latest_source()")
@@ -39,7 +38,7 @@ def _update_virtual_env():
 
 def _create_or_update_dotenv():
     append('.env', 'DJANGO_DEBUG_FALSE=y')
-    append('.env', f'SITENAME={env.host.split(_)[0]}')
+    append('.env', f'SITENAME={env.host}')
     current_contents = run('cat .env')
     if 'DJANGO_SECRET_KEY' not in current_contents:
         new_secret = ''.join(random.SystemRandom().choices(
