@@ -3,10 +3,9 @@ from fabric.contrib.files import append, exists
 from fabric.api import cd, env, local, run
 import paramiko as ssh
 
-
 ssh.util.log_to_file("paramiko.log", 10)
 repo_url = 'https://github.com/Jmarinesq/djangotdd'
-env.host = '157.'
+
 
 def deploy():
     site_folder = f'/home/{env.user}/sites/staging'
@@ -34,9 +33,9 @@ def _get_latest_source():
 
 
 def _update_virtual_env():
-    if not  exists('virtualenv/bin/pip'):
+    if not exists('virtualenv/bin/pip'):
         run(f'python3 -m venv virtualenv')
-    run('./virtualenv/bin/pip install -r requirements.txt')
+    run('../virtualenv/bin/pip install -r requirements.txt')
 
 
 def _create_or_update_dotenv():
@@ -52,11 +51,11 @@ def _create_or_update_dotenv():
 
 
 def _update_static_files():
-    run('./virtualenv/bin/python manage.py collectstatic --noinput')
+    run('../virtualenv/bin/python manage.py collectstatic --noinput')
 
 
 def _update_database():
-    run('.virtualenv/bin/python manage.py migrate --noinput')
+    run('..virtualenv/bin/python manage.py migrate --noinput')
 
 
 
