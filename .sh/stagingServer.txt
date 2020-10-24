@@ -40,3 +40,4 @@ sudo systemctl reload nginx
 
 export DJANGO_DEBUG_FALSE=y DJANGO_SECRET_KEY=abc123
 
+sudo systemctl daemon-reload
