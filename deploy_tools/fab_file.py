@@ -33,7 +33,7 @@ def _update_virtual_env():
 
 def _create_or_update_dotenv():
     append('.env', 'DJANGO_DEBUG_FALSE=y')
-    append('.env', f'SITENAME={env.host}')
+    append('.env', f'SITENAME={env.host.split(_)[0]}')
     current_contents = run('cat .env')
     if 'DJANGO_SECRET_KEY' not in current_contents:
         new_secret = ''.join(random.SystemRandom().choices(
