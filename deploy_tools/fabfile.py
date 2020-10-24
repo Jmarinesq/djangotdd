@@ -1,6 +1,7 @@
 import random
 from fabric.contrib.files import append, exists
 from fabric.api import cd, env, local, run
+from fabric.operations import
 
 repo_url = 'https://github.com/Jmarinesq/djangotdd'
 
@@ -9,10 +10,15 @@ def deploy():
     site_folder = f'/home/{env.user}/sites/{env.host}'
     run(f'mkdir -p {site_folder}')
     with cd(site_folder):
+
         _get_latest_source()
+        print("_get_latest_source()")
         _update_virtual_env()
+        print("_update_virtual_env()")
         _create_or_update_dotenv()
+        print("_create_or_update_dotenv()")
         _update_static_files()
+        print("_update_static_files()")
         _update_database()
 
 
