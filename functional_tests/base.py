@@ -5,7 +5,7 @@ import os
 import time
 
 import env_vars
-MAX_WAIT = 3
+MAX_WAIT = 10
 
 
 class FunctionalTest(StaticLiveServerTestCase):
