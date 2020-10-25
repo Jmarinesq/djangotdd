@@ -51,11 +51,11 @@ def _create_or_update_dotenv():
 
 
 def _update_static_files():
-    run(f'../virtualenv/bin/python ../manage.py collectstatic --noinput')
+    run(f'{site_folder}/virtualenv/bin/python3 {site_folder}/manage.py collectstatic --noinput')
 
 
 def _update_database():
-    run(f'../virtualenv/bin/python ../manage.py migrate --noinput')
+    run(f'{site_folder}/virtualenv/bin/python3 {site_folder}/manage.py migrate --noinput')
 
 
 
