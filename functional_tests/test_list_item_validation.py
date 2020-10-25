@@ -28,9 +28,8 @@ class ItemValidationTest(FunctionalTest):
             "You can't have an empty list item"
         ))
         # She receives a similar warning on the list page
+        # And she can correct it by filling some text in
         self.browser.find_element_by_id('id_new_item').send_keys('Make tea')
         self.browser.find_element_by_id('id_new_item').send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: Buy milk')
         self.wait_for_row_in_list_table('2: Make tea')
-        # And she can correct it by filling some text in
-        self.fail('write me!')
