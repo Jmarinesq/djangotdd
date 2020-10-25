@@ -1,7 +1,7 @@
 from selenium.webdriver.common.keys import Keys
 from unittest import skip
 from functional_tests.base import FunctionalTest
-
+MAX_WAIT = 10
 
 class ItemValidationTest(FunctionalTest):
 
