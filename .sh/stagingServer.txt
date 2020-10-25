@@ -52,3 +52,7 @@ sudo systemctl daemon-reload
 cat ./deploy_tools/nginx_template.template.conf \
     | sed "s/DOMAIN/157.230.95.62/g" \
     | sudo tee /etc/nginx/sites-available/157.230.95.62
+
+cat ./deploy_tools/gunicorn-systemd.template.conf \
+    | sed "s/DOMAIN/157.230.95.62/g" \
+    | sudo tee /etc/systemd/system/gunicorn-staging.service
