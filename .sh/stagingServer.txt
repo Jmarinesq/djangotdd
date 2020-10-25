@@ -50,11 +50,11 @@ export DJANGO_DEBUG_FALSE=y DJANGO_SECRET_KEY=abc123
 sudo systemctl daemon-reload
 
 cat ./deploy_tools/nginx_template.template.conf \
-    | sed "s/DOMAIN/157.230.95.62/g" \
+    | sed "s/157.230.95.62/g" \
     | sudo tee /etc/nginx/sites-available/157.230.95.62
 
-cat ./deploy_tools/gunicorn-systemd.template.conf \
-    | sed "s/DOMAIN/157.230.95.62/g" \
+cat ./deploy_tools/gunicorn-system.template.conf \
+    | sed "s/157.230.95.62/g" \
     | sudo tee /etc/systemd/system/gunicorn-staging.service
 
 
