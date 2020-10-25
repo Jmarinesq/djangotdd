@@ -36,6 +36,12 @@ readlink -f $SITENAME
 
 sudo systemctl reload nginx
 
+#sudo ln -s /etc/nginx/sites-available/157.230.95.62_staging 157.230.95.62_staging
+
+#./virtualenv/bin/gunicorn --bind unix:/tmp/157.230.95.62.socket superlists.wsgi:application
+
+#export DJANGO_DEBUG_FALSE=y DJANGO_SECRET_KEY=abc123 SITENAME=157.230.95.62
+
 
 ../virtualenv/bin/python manage.py runserver
 

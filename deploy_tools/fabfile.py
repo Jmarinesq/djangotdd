@@ -8,7 +8,7 @@ repo_url = 'https://github.com/Jmarinesq/djangotdd'
 
 
 def deploy():
-    site_folder = f'/home/{env.user}/sites/staging'
+    site_folder = f'/home/{env.user}/sites/{env.host}'
     run(f'mkdir -p {site_folder}')
     with cd(site_folder):
         print("_get_latest_source()")
@@ -51,11 +51,11 @@ def _create_or_update_dotenv():
 
 
 def _update_static_files():
-    run(f'/home/{env.user}/sites//virtualenv/bin/python /home/{env.user}/sites/staging/manage.py collectstatic --noinput')
+    run(f'../virtualenv/bin/python ../manage.py collectstatic --noinput')
 
 
 def _update_database():
-    run(f'/home/{env.user}/sites/virtualenv/bin/python /home/{env.user}/sites/staging/manage.py migrate --noinput')
+    run(f'../virtualenv/bin/python ../manage.py migrate --noinput')
 
 
 
