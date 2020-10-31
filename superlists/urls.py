@@ -16,12 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from lists import views
 from lists import urls as list_urls
-from lists import views as list_views
-from django.views.generic.base import RedirectView
+from accounts import urls as accounts_urls
+
 
 
 urlpatterns = [
     url(r'^$', views.home_page, name='home'),
     url(r'^lists/', include(list_urls)),
-    #url(r'^favicon.ico$', RedirectView.as_view(url='/static/favicon/favicon.ico')),
+    url(r'^accounts/', include(accounts_urls)),
 ]
