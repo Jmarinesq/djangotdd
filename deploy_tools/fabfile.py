@@ -1,6 +1,6 @@
 import random
 from fabric.contrib.files import append, exists
-from fabric.api import cd, env, local, run
+from fabric.api import cd, env, local, run, sudo
 import paramiko as ssh
 
 ssh.util.log_to_file("paramiko.log", 10)
@@ -21,7 +21,7 @@ def deploy():
         _update_static_files()
         print("_update_database()")
         _update_database()
-        print("_update_database()")
+        print("_restart_gunicorn()")
         _restart_gunicorn()
 
 
@@ -63,8 +63,8 @@ def _update_database():
 
 
 def _restart_gunicorn():
-    run(f'sudo systemctl daemon-reload')
-    run(f'sudo systemctl restart gunicorn')
+    sudo(f'sudo systemctl daemon-reload')
+    sudo(f'sudo systemctl restart gunicorn')
 
 
 

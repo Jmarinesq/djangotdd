@@ -61,3 +61,10 @@ sudo systemctl daemon-reload
 sudo systemctl reload nginx
 sudo systemctl enable gunicorn
 sudo systemctl start gunicorn
+
+
+# Restart service after deployment
+sudo systemctl daemon-reload
+sudo systemctl restart gunicorn
+
+sudo journalctl -f -u gunicorn

@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 import re
 from .base import FunctionalTest
 
-TEST_EMAIL = 'hosie416@wacopyingy.com'
+TEST_EMAIL = 'jmarinesq@gmail.com'
 SUBJECT = 'Your login link for Superlists'
 
 
