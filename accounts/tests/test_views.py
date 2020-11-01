@@ -8,7 +8,7 @@ class SendLoginEmailViewTest(TestCase):
 
     def test_redirects_to_home_page(self):
         response = self.client.post('/accounts/send_login_email', data={
-            'email': "jmarinesq@gmail.com"
+            'email': "jmarinesqtest@gmail.com"
         })
 
         self.assertRedirects(response, '/')
@@ -16,17 +16,17 @@ class SendLoginEmailViewTest(TestCase):
     @patch('accounts.views.send_mail')
     def test_sends_email_to_address_from_post(self, mock_send_mail):
         self.client.post('/accounts/send_login_email', data={
-            'email': 'jmarinesq@gmail.com'
+            'email': 'jmarinesqtest@gmail.com'
         })
         (subject, body, from_email, to_list), kwargs = mock_send_mail.call_args
         self.assertTrue(mock_send_mail.called, True)
         self.assertEqual(subject, 'Your login link for Superlists')
         self.assertEqual(from_email, 'noreply@superlists')
-        self.assertEqual(to_list, ['jmarinesq@gmail.com'])
+        self.assertEqual(to_list, ['jmarinesqtest@gmail.com'])
 
     def test_adds_success_menssage(self):
         response = self.client.post('/accounts/send_login_email', data={
-            'email': 'jmarinesq@gmail.com'
+            'email': 'jmarinesqtest@gmail.com'
         }, follow=True)
 
         message = list(response.context['messages'])[0]
@@ -39,7 +39,7 @@ class SendLoginEmailViewTest(TestCase):
     @patch('accounts.views.messages')
     def test_adds_success_message_with_mocks(self, mock_messages):
         response = self.client.post('/accounts/send_login_email', data={
-            'email': 'jmarinesq@gmail.com'
+            'email': 'jmarinesqtest@gmail.com'
         })
 
         expected = "Check your email, we've sent you a link you can use to log in."

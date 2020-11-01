@@ -19,7 +19,7 @@ class LoginTest(FunctionalTest):
         # It's telling her to enter her email address, so she does
 
         if self.staging_server:
-            test_email = 'jmarinesq@gmail.com'
+            test_email = 'jmarinesqtest@gmail.com'
         else:
             test_email = 'edith@example.com'
 
