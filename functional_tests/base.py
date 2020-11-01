@@ -12,9 +12,9 @@ class FunctionalTest(StaticLiveServerTestCase):
 
     def setUp(self) -> None:
         self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path)
-        staging_server = os.environ.get('STAGING_SERVER')
-        if staging_server:
-            self.live_server_url = f'http://{staging_server}'
+        self.staging_server = os.environ.get('STAGING_SERVER')
+        if self.staging_server:
+            self.live_server_url = f'http://{self.staging_server}'
             print('Running against staging server')
         else:
             print('Running on Live server')
