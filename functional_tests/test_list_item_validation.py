@@ -2,7 +2,7 @@ from selenium.webdriver.common.keys import Keys
 from unittest import skip
 from functional_tests.base import FunctionalTest
 MAX_WAIT = 10
-
+import time
 
 class ItemValidationTest(FunctionalTest):
 
@@ -38,7 +38,7 @@ class ItemValidationTest(FunctionalTest):
         self.wait_for(lambda: self.browser.find_elements_by_css_selector(
             '#id_text:invalid'
         ))
-
+        time.sleep(0.5)
         # And she can correct it by filling some text in
         self.get_item_input_box().send_keys('Make tea')
         self.wait_for(lambda: self.browser.find_elements_by_css_selector(
