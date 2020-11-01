@@ -21,6 +21,8 @@ def deploy():
         _update_static_files()
         print("_update_database()")
         _update_database()
+        print("_update_database()")
+        _restart_gunicorn()
 
 
 def _get_latest_source():
@@ -58,6 +60,11 @@ def _update_static_files():
 def _update_database():
     site_folder = f'/home/{env.user}/sites/{env.host}'
     run(f'{site_folder}/virtualenv/bin/python3 {site_folder}/manage.py migrate --noinput')
+
+
+def _restart_gunicorn():
+    run(f'sudo systemctl daemon-reload')
+    run(f'sudo systemctl restart gunicorn')
 
 
 
