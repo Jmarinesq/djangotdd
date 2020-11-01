@@ -147,7 +147,7 @@ LOGGING = {
     'root': {'level': 'INFO'},
 }
 
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.wacopyingy.com'
 EMAIL_HOST_USER = 'hosie416@wacopyingy.com'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 EMAIL_PORT = 587
