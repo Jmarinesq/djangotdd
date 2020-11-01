@@ -73,20 +73,15 @@ class LoginTest(FunctionalTest):
         try:
             inbox.user(test_email)
             inbox.pass_(os.environ['EMAIL_PASSWORD'])
-            if True:
-            #while time.time() - start < 60:
+            while time.time() - start < 60:
                 count, _ = inbox.stat()
-                print(f'Email count: {count}')
-                #for i in reversed(range(max(1, count - 3), count + 1)):
-                for i in reversed(range(12045, 12052)):
-                    print('getting msg', i)
+                for i in reversed(range(max(1, count - 3), count + 1)):
                     _, lines, _ = inbox.retr(i)
                     lines = [l.decode('utf8') for l in lines]
 
                     if f'Subject: {subject}' in lines:
                         email_id = i
                         body = '\n'.join(lines)
-                        print(body)
                         return body
                 time.sleep(5)
         finally:
