@@ -2,6 +2,7 @@ import random
 from fabric.contrib.files import append, exists
 from fabric.api import cd, env, local, run, sudo
 import paramiko as ssh
+import os
 
 ssh.util.log_to_file("paramiko.log", 10)
 repo_url = 'https://github.com/Jmarinesq/djangotdd'
@@ -50,7 +51,8 @@ def _create_or_update_dotenv():
             k=50
         ))
         append('.env', f'DJANGO_SECRET_KEY={new_secret}')
-
+    email_password = os.environ['EMAIL_PASSWORD']
+    append('.env', f'EMAIL_PASSWORD={email_password}')
 
 def _update_static_files():
     site_folder = f'/home/{env.user}/sites/{env.host}'
