@@ -54,6 +54,7 @@ def _create_or_update_dotenv():
     email_password = os.environ['EMAIL_PASSWORD']
     append('.env', f'EMAIL_PASSWORD={email_password}')
 
+
 def _update_static_files():
     site_folder = f'/home/{env.user}/sites/{env.host}'
     run(f'{site_folder}/virtualenv/bin/python3 {site_folder}/manage.py collectstatic --noinput')

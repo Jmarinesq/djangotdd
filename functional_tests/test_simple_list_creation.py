@@ -36,8 +36,7 @@ class NewVisitorTest(FunctionalTest):
         # There is still a text box inviting her to add another item. She
         # enters "Use peacock feathers to make a fly" (Edith is very methodical)
         inputbox = self.get_item_input_box()
-        inputbox.send_keys('Use peacock feathers to make a fly')
-        inputbox.send_keys(Keys.ENTER)
+        self.add_list_item('Use peacock feathers to make a fly')
          
         self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
 
@@ -62,8 +61,7 @@ class NewVisitorTest(FunctionalTest):
         # Edith starts a new to-do list
         self.browser.get(self.live_server_url)
         inputbox = self.get_item_input_box()
-        inputbox.send_keys('Buy peacock feathers')
-        inputbox.send_keys(Keys.ENTER)
+        self.add_list_item('Buy peacock feathers')
         self.wait_for_row_in_list_table('1: Buy peacock feathers')
          
         # She notices that her list has a unique URL
@@ -89,8 +87,7 @@ class NewVisitorTest(FunctionalTest):
         # Francis starts a new list by entering a new item. He
         # is less interesting than Edith...
         inputbox = self.get_item_input_box()
-        inputbox.send_keys('Buy milk')
-        inputbox.send_keys(Keys.ENTER)
+        self.add_list_item('Buy milk')
         self.wait_for_row_in_list_table('1: Buy milk')
          
         # Francis gets his own unique URL
