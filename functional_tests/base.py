@@ -11,16 +11,17 @@ from .server_tools import reset_database
 import env_vars
 MAX_WAIT = 10
 
-chrome_options = Options()
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--disable-dev-shm-usage')
-
 
 class FunctionalTest(StaticLiveServerTestCase):
 
+    def get_chrome_options(self):
+        chrome_options = Options()
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+
     def setUp(self) -> None:
-        self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path,chrome_options=chrome_options)
+        self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path, chrome_options=self.get_chrome_options())
         self.staging_server = os.environ.get('STAGING_SERVER')
         if self.staging_server:
             self.live_server_url = f'http://{self.staging_server}'

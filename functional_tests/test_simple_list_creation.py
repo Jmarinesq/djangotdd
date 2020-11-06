@@ -51,7 +51,8 @@ class NewVisitorTest(FunctionalTest):
         # explanatory text to that effect.
         edith_list_url = self.browser.current_url
         self.browser.quit()
-        self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path)
+        self.browser = self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path, chrome_options=self.get_chrome_options())
+
 
         # She visits that URL - her to-do list is still there.
         self.browser.get(edith_list_url)
@@ -76,7 +77,8 @@ class NewVisitorTest(FunctionalTest):
         ## We use a new browser session to make sure that no information
         ## of Edith's is coming through from cookies etc
         self.browser.quit()
-        self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path)
+        self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path, chrome_options=self.get_chrome_options())
+)
 
         # Francis visits the home page.  There is no sign of Edith's
         # list
