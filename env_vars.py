@@ -1,5 +1,6 @@
 import os
 
+chromedriver_path = os.environ['CHROMEDRIVER_PATH']
 
 
 def set_env_vars():
