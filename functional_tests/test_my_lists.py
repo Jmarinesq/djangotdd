@@ -6,6 +6,7 @@ from .server_tools import create_session_on_server
 from .base import FunctionalTest
 from unittest import skip
 User = get_user_model()
+import time
 
 
 class MyListTest(FunctionalTest):
@@ -34,6 +35,7 @@ class MyListTest(FunctionalTest):
         self.browser.get(self.live_server_url)
         self.wait_to_be_logged_in(email)
         self.add_list_item('Reticulate splines')
+        time.sleep(0.5)
         self.add_list_item('Immanentize eschaton')
 
         first_list_url = self.browser.current_url
