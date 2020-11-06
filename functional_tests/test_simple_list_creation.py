@@ -78,7 +78,7 @@ class NewVisitorTest(FunctionalTest):
         ## of Edith's is coming through from cookies etc
         self.browser.quit()
         self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path, chrome_options=self.get_chrome_options())
-)
+
 
         # Francis visits the home page.  There is no sign of Edith's
         # list

@@ -19,6 +19,7 @@ class FunctionalTest(StaticLiveServerTestCase):
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-dev-shm-usage')
+        return chrome_options
 
     def setUp(self) -> None:
         self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path, chrome_options=self.get_chrome_options())
