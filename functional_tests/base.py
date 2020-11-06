@@ -5,11 +5,15 @@ from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import os
+from datetime import datetime
 import time
 from .server_tools import reset_database
 
 import env_vars
 MAX_WAIT = 10
+
+SCREEN_DUMP_LOCATION = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), 'screendumps')
 
 
 class FunctionalTest(StaticLiveServerTestCase):
@@ -22,7 +26,8 @@ class FunctionalTest(StaticLiveServerTestCase):
         return chrome_options
 
     def setUp(self) -> None:
-        self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path, chrome_options=self.get_chrome_options())
+        self.browser = webdriver.Chrome(executable_path=env_vars.chromedriver_path,
+                                        chrome_options=self.get_chrome_options())
         self.staging_server = os.environ.get('STAGING_SERVER')
         if self.staging_server:
             self.live_server_url = f'http://{self.staging_server}'
@@ -32,7 +37,40 @@ class FunctionalTest(StaticLiveServerTestCase):
             print('Running on Live server')
 
     def tearDown(self) -> None:
+        if self._test_has_failed():
+            if not os.path.exists(SCREEN_DUMP_LOCATION):
+                os.makedirs(SCREEN_DUMP_LOCATION)
+            for ix, handle in enumerate(self.browser.window_handles):
+                self._windowid = ix
+                self.browser.switch_to.window(handle)
+                self.take_screenshot()
+                self.dump_html()
         self.browser.quit()
+        super().tearDown()
+
+    def _test_has_failed(self):
+        # slightly obscure but couldn't find a better way
+        return any(error for (method, error) in self._outcome.errors)
+
+    def take_screenshot(self):
+        filename = self._get_filename() + '.png'
+        print('screenshoting to', filename)
+        self.browser.get_screenshot_as_file(filename)
+
+    def dump_html(self):
+        filename = self._get_filename() + '.html'
+        print('dumping page HTML to', filename)
+        with open(filename, 'w') as f:
+            f.write(self.browser.page_source)
+
+    def _get_filename(self):
+        timestamp = datetime.now().isoformat().replace(':', '.')[:19]
+        folder = SCREEN_DUMP_LOCATION
+        classname = self.__class__.__name__
+        method = self._testMethodName
+        windowid = self._windowid
+        timestamp = timestamp
+        return f'{folder}/{classname}.{method}-window{windowid}-{timestamp}'
 
     def wait(fn):
         def modified_fn(*args, **kwargs):

@@ -1,6 +1,9 @@
 import os
-
-chromedriver_path = os.environ['CHROMEDRIVER_PATH']
+try:
+    chromedriver_path = os.environ['CHROMEDRIVER_PATH']
+except:
+    chromedriver_path = "/Users/A187AG/Desktop/knwldg/Programming/djangoTDD/chromedriver"
+    os.environ["PATH"] = os.environ["PATH"] + ":/Users/A187AG/Desktop/knwldg/Programming/djangoTDD"
 
 
 def set_env_vars():
