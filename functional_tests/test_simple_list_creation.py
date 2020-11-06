@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 import os
 from functional_tests.base import FunctionalTest
 import env_vars
+import time
 
 
 class NewVisitorTest(FunctionalTest):
@@ -36,6 +37,7 @@ class NewVisitorTest(FunctionalTest):
         # There is still a text box inviting her to add another item. She
         # enters "Use peacock feathers to make a fly" (Edith is very methodical)
         inputbox = self.get_item_input_box()
+        time.sleep(0.5)
         self.add_list_item('Use peacock feathers to make a fly')
          
         self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
@@ -61,6 +63,7 @@ class NewVisitorTest(FunctionalTest):
         # Edith starts a new to-do list
         self.browser.get(self.live_server_url)
         inputbox = self.get_item_input_box()
+        time.sleep(0.7)
         self.add_list_item('Buy peacock feathers')
         self.wait_for_row_in_list_table('1: Buy peacock feathers')
          
